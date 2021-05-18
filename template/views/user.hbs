@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title>USER</title>
+    </head>
+    <body>
+        {{#if title}}
+            <h2>{{title}}</h2>
+        {{/if}}
+
+        {{#if showUserName}}
+            <h3>{{createdBy}}</h3>
+        {{else}}
+            <h3>Unknown Author</h3>
+        {{/if}}
+        {{#unless err}}
+            <h4>Warning: Success</h4>
+        {{/unless}}
+
+        <h1>User table</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>email</th>
+                    <th>owner</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each userArr}}
+                    <tr>
+                        <td>{{this.name}}</td>
+                        <td>{{this.email}}</td>
+                        <td>{{this.owner}}</td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </body>
+</html>

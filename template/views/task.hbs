@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <title>TASK</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="/js/task.js"></script>
+    </head>
+    <body>
+        {{#if title}}
+            <h2>{{title}}</h2>
+        {{/if}}
+        <button id="addBtn">Add here</button>
+        {{#if showUserName}}
+            <h3>{{createdBy}}</h3>
+        {{else}}
+            <h3>Unknown Author</h3>
+        {{/if}}
+
+        {{#unless err}}
+            <h4>Warning: Success</h4>
+        {{/unless}}
+        
+        <h1>Task table</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>description</th>
+                    <th>Status</th>
+                    <th>owner</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each taskArr}}
+                    <tr>
+                        <td>{{this.description}}</td>
+                        <td>
+                            {{#if this.completed}}
+                                completed
+                            {{else}}
+                                Incomplete
+                            {{/if}}                            
+                        </td>
+                        <td>{{this.owner}}</td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </body>
+</html>

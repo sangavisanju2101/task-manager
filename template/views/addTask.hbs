@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>Add task</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="/js/addTask.js"></script>
+    </head>
+    <body>
+        <form id="taskForm">
+            <label>Description</label>
+            <input type="text" id="description"><br><br>
+            <label>Status</label>
+            <select id="status">
+                <option value="true">Completed</option>
+                <option value="false">Incompleted</option>
+            </select><br><br>
+            <label>Owner</label>
+            <select id="owner">
+                {{#each user}}
+                    <option value="{{this.id}}">{{this.name}}</option>
+                {{/each}}
+            </select><br><br>
+            <input type="submit" ><br><br>
+            <input type="reset">
+        </form>
+    </body>
+</html>
