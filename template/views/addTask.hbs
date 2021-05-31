@@ -5,21 +5,27 @@
         <script src="/js/addTask.js"></script>
     </head>
     <body>
+        <h1>{{title}}</h1>
         <form id="taskForm">
             <label>Description</label>
-            <input type="text" id="description"><br><br>
+            <input type="text" id="description" value="{{task.description}}"><br><br>
             <label>Status</label>
             <select id="status">
-                <option value="true">Completed</option>
-                <option value="false">Incompleted</option>
+                {{#select task.completed}}
+                    <option value="true">Completed</option>
+                    <option value="false">Incompleted</option>
+                {{/select}}
             </select><br><br>
             <label>Owner</label>
             <select id="owner">
-                {{#each user}}
-                    <option value="{{this.id}}">{{this.name}}</option>
-                {{/each}}
+                {{#select task.owner}}
+                    {{#each user}}
+                        <option value="{{this.id}}">{{this.name}}</option>
+                    {{/each}}
+                {{/select}}
             </select><br><br>
-            <input type="submit" ><br><br>
+            <input type="submit" id="addbtn" value="Add">
+            <input type="submit" id="updatebtn" value="Update">
             <input type="reset">
         </form>
     </body>

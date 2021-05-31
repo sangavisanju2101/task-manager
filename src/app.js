@@ -1,13 +1,10 @@
 require("./db/mongoose")
+var bcrypt = require('bcryptjs');
 const express = require("express");
 const app = express();
 const path = require ("path");
-const User = require('./models/user');
-const Task = require('./models/task');
-const routes = require('./routes'); 
-
-const taskService = require('./api/tasks/tasks.service');
-const userService = require('./api/users/users.service');
+const routes = require('./routes');
+var hbs = require('hbs');
 
 const publicDirPath = path.join(__dirname,'../public');
 const viewPath = path.join(__dirname,'../template/views');
@@ -23,26 +20,11 @@ app.use(express.static(publicDirPath));
 app.set('view engine', 'hbs');
 app.set('views', viewPath);
 
-app.get('/task', (req,res)=> {
-    taskService.getTask(req).then((taskArr)=> {
-        res.render('task', {
-            title : 'Task page',
-            taskArr : taskArr
-        })
-    }).catch((err)=> {
-        console.log("error", err);
-        res.status(500).send('Unable to render page');
-    })
-})
-
-app.get('/task/add', (req,res)=>{
-    userService.getUser(req).then((user)=>{
-        res.render('addTask',{
-            user : user
-        })
-    })
-    
-})
+hbs.registerHelper('select', function(selected, options) {
+    return options.fn(this).replace(
+        new RegExp(' value=\"' + selected + '\"'),
+        '$& selected="selected"');
+});
 
 app.get('', (req,res)=> {
     res.send({
@@ -50,6 +32,6 @@ app.get('', (req,res)=> {
     })
 })
 
-app.listen('7070', ()=>{
+app.listen('7070', () => {
     console.log("the server is up on 7070 port")
 })

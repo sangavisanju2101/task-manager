@@ -8,6 +8,14 @@ const getTask = (req) => {
     }
 }
 
+const getTaskById=(req,res) => {
+    try{
+        return Task.findById(req.params.id,req.body);
+    }catch{
+        throw new Error(err);
+    }
+}
+
 const saveTask = (req) => {
     try{
         var task = new Task(req.body);
@@ -35,6 +43,7 @@ const deleteTask = (req) => {
 
 module.exports = {
     getTask : getTask,
+    getTaskById : getTaskById,
     saveTask : saveTask,
     updateTask : updateTask,
     deleteTask : deleteTask

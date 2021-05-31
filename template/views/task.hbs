@@ -9,6 +9,8 @@
             <h2>{{title}}</h2>
         {{/if}}
         <button id="addBtn">Add here</button>
+        <button id="deletebtn">Delete</button>
+        <button id="editbtn">Edit</button><br>
         {{#if showUserName}}
             <h3>{{createdBy}}</h3>
         {{else}}
@@ -18,19 +20,19 @@
         {{#unless err}}
             <h4>Warning: Success</h4>
         {{/unless}}
-        
         <h1>Task table</h1>
         <table>
             <thead>
                 <tr>
+                    <th></th>
                     <th>description</th>
                     <th>Status</th>
                     <th>owner</th>
-                </tr>
             </thead>
             <tbody>
                 {{#each taskArr}}
                     <tr>
+                        <td><input type = "checkbox" id="{{this.id}}"></td>
                         <td>{{this.description}}</td>
                         <td>
                             {{#if this.completed}}
