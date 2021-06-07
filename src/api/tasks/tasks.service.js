@@ -2,7 +2,7 @@ const Task = require('../../models/task');
 
 const getTask = (req) => {
     try{
-        return Task.find(req.query);
+        return Task.find(req.query).populate('owner');
     } catch(err){
         throw Error(err);
     }

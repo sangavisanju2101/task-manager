@@ -49,4 +49,14 @@ $(document).ready(function(){
             })
             window.location.href=`/task/edit/${checkedIds[0]}`;
     })
+
+    $("#searchbtn").click(function(){
+        var searchInput = $("#searchField").val();
+        if(searchInput == ""){
+            alert("Please enter something to search");
+            window.location.href = "/task"
+            return;
+        }
+        window.location.href = `/task?description=${searchInput}`
+    })
 })

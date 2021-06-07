@@ -5,6 +5,7 @@ const app = express();
 const path = require ("path");
 const routes = require('./routes');
 var hbs = require('hbs');
+var jwt = require('jsonwebtoken');
 
 const publicDirPath = path.join(__dirname,'../public');
 const viewPath = path.join(__dirname,'../template/views');

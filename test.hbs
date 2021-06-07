@@ -13,9 +13,19 @@
         <button id="searchbtn">Search</button><br><br>  
         <button id="addBtn">Add here</button>
         <button id="deletebtn">Delete</button>
-        <button id="editbtn">Edit</button><br><br>
+        <button id="editbtn">Edit</button><br>
+        
+        {{#if showUserName}}
+            <h3>{{createdBy}}</h3>
+        {{else}}
+            <h3>Unknown Author</h3>
+        {{/if}}
+
+        {{#unless err}}
+            <h4>Warning: Success</h4>
+        {{/unless}}
         <h1>Task table</h1>
-        {{#if taskArr.length}}
+        
             <table>
                 <thead>
                     <tr>
@@ -36,13 +46,10 @@
                                     Incomplete
                                 {{/if}}                            
                             </td>
-                            <td>{{this.owner.name}}</td>
+                            <td>{{this.owner}}</td>
                         </tr>
                     {{/each}}
                 </tbody>
             </table>
-        {{else}}
-            <p>No records found</p>
-        {{/if}}
     </body>
 </html>
